@@ -1,3 +1,9 @@
-import './styles/style.css'
+import initSwipers from './swipers'
 
-console.log('Hello from VS Code')
+function app() {
+    initSwipers()
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    app();
+})
