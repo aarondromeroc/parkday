@@ -1,9 +1,9 @@
-import initSwipers from './swipers'
+import initSwipers from "./swipers";
 
 function app() {
-    initSwipers()
+  initSwipers();
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    app();
-})
+document.addEventListener("DOMContentLoaded", function () {
+  app();
+});
