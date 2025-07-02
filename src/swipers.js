@@ -11,7 +11,10 @@ const createSwiper = function (
   speed = 600,
   desktopSlides,
   desktopSpace,
-  effect = null
+  effect = null,
+  mobileSlides = 1,
+  portraitSlides = 2,
+  tabletSlides = 3
 ) {
   const parentElement = swiperEl.closest(
     "[data-grid-swiper], [data-features-swiper], [data-restaurant-swiper]"
@@ -33,8 +36,29 @@ const createSwiper = function (
     mousewheel: true,
     keyboard: true,
     loop: loop,
-    slidesPerView: desktopSlides,
     spaceBetween: desktopSpace,
+    breakpoints: {
+      320: {
+        slidesPerView: mobileSlides,
+        spaceBetween: 16,
+      },
+      480: {
+        slidesPerView: mobileSlides,
+        spaceBetween: 16,
+      },
+      768: {
+        slidesPerView: portraitSlides,
+        spaceBetween: 20,
+      },
+      992: {
+        slidesPerView: tabletSlides,
+        spaceBetween: desktopSpace,
+      },
+      1200: {
+        slidesPerView: desktopSlides,
+        spaceBetween: desktopSpace,
+      },
+    },
   };
 
   if (effect) {
@@ -56,24 +80,52 @@ const createSwiper = function (
   }
 };
 
-function initGridSwiper() {
+function initGridSwiper(
+  mobileSlides = 1,
+  portraitSlides = 1,
+  tabletSlides = 1
+) {
   const gridSwiperEl = document.querySelector("[data-grid-swiper]");
 
   if (gridSwiperEl) {
     const swiperContainer = gridSwiperEl.querySelector(".swiper");
     if (swiperContainer) {
-      createSwiper(swiperContainer, true, 600, 1, 24);
+      createSwiper(
+        swiperContainer,
+        true,
+        600,
+        1,
+        24,
+        null,
+        mobileSlides,
+        portraitSlides,
+        tabletSlides
+      );
     }
   }
 }
 
-function initFeaturesSwipers() {
+function initFeaturesSwipers(
+  mobileSlides = 1.25,
+  portraitSlides = 2,
+  tabletSlides = 2
+) {
   const featuresElements = document.querySelectorAll("[data-features-swiper]");
 
   featuresElements.forEach((element, index) => {
     const swiperEl = element.querySelector(".swiper");
     if (swiperEl) {
-      createSwiper(swiperEl, false, 600, 3, 16);
+      createSwiper(
+        swiperEl,
+        false,
+        600,
+        3,
+        16,
+        null,
+        mobileSlides,
+        portraitSlides,
+        tabletSlides
+      );
     }
   });
 }
@@ -83,7 +135,10 @@ function initRestaurantSwipers(
   speed = 300,
   slidesPerView = 1,
   spaceBetween = 0,
-  effect = null
+  effect = null,
+  mobileSlides = 1,
+  portraitSlides = 1,
+  tabletSlides = 1
 ) {
   const restSwiper = document.querySelector("[data-restaurant-swiper]");
 
@@ -96,7 +151,10 @@ function initRestaurantSwipers(
         speed,
         slidesPerView,
         spaceBetween,
-        "cards"
+        "cards",
+        mobileSlides,
+        portraitSlides,
+        tabletSlides
       );
     }
   }
